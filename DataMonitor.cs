@@ -10,10 +10,22 @@ class DataMonitor<T>
 
     private int PlannedAddCount { get; set; }
 
+    private int WaitingSetSize = 0; // waiting threads set size
+
     public DataMonitor(int plannedAddCount)
     {
         PlannedAddCount = plannedAddCount;
     }
+
+    public override string ToString()
+    {
+        lock (this)
+        {
+            return string.Join(", ", Data);
+        }
+
+    }
+
 
     public void AddElement(T element)
     {
@@ -34,12 +46,15 @@ class DataMonitor<T>
     {
         lock (this)
         {
-            if (AddCount < PlannedAddCount)
+            WaitingSetSize++;
+            if (AddCount + WaitingSetSize <= PlannedAddCount)
             {
                 while (Data.Count <= 0)
                 {
                     Monitor.Wait(this);
                 }
+
+                WaitingSetSize--;
 
                 T lastElement = Data[Data.Count - 1];
 

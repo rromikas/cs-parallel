@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Threading;
+using System.Diagnostics;
 
 namespace cs_lygiagretumas
 {
@@ -9,14 +10,18 @@ namespace cs_lygiagretumas
     {
         static void Main(string[] args)
         {
+            //Nuskaitomi duomenys iš failų
             List<Student> students = ReadData();
+
             List<Thread> threads = new List<Thread>();
 
-            ResultsMonitor results = new ResultsMonitor();
-            DataMonitor
+            ResultsMonitor resultsMonitor = new ResultsMonitor();
+            DataMonitor<Student> dataMonitor = new DataMonitor<Student>(students.Count);
+
+            //Paleidžiamos darbininkių gijos, kurios ims duomenis iš duomenų monitoriaus
             for (int i = 0; i < 20; i++)
             {
-                threads.Add(new Thread(() => ThreadWorker());
+                threads.Add(new Thread(() => ThreadWorker(ref dataMonitor, ref resultsMonitor)));
             }
 
             threads.ForEach(thread =>
@@ -24,21 +29,49 @@ namespace cs_lygiagretumas
                 thread.Start();
             });
 
+            //Pagrindinė gija deda elementus į duomenų monitorių
+            students.ForEach(x =>
+            {
+                dataMonitor.AddElement(x);
+            });
+
             threads.ForEach(thread =>
             {
                 thread.Join();
             });
 
+            Console.WriteLine("REZULTATAI: " + resultsMonitor);
+
             Console.ReadKey();
         }
 
 
-        static void ThreadWorker(ref DataMonitor<Student> dataMonitor, ref ResultsMonitor resultsMonitor, int dataSize)
+        static void ThreadWorker(ref DataMonitor<Student> dataMonitor, ref ResultsMonitor resultsMonitor)
         {
-            Student student = (Student)dataMonitor.GetLastElement();
-            Console.WriteLine("Gija studentas" + student);
-            resultsMonitor.AddElement(student);
+            Student student;
+            while ((student = (Student)dataMonitor.GetLastElement()) != null)
+            {
 
+                if (IsValid(student))
+                {
+                    resultsMonitor.AddElement(student);
+                }
+            }
+            Console.WriteLine("GIJA BAIGĖ DARBA");
+            return;
+        }
+
+        static Boolean IsValid(Student student)
+        {
+            BusyWait(2000);
+            return student.Grade > 0;
+        }
+        static void BusyWait(int milliseconds)
+        {
+            var sw = Stopwatch.StartNew();
+
+            while (sw.ElapsedMilliseconds < milliseconds)
+                Thread.SpinWait(1000);
         }
 
         static List<Student> ReadData()
