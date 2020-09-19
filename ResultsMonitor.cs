@@ -15,6 +15,11 @@ class ResultsMonitor
         return string.Join(", ", Data);
     }
 
+    public List<Student> GetData()
+    {
+        return Data;
+    }
+
     public void AddElement(Student element)
     {
         lock (this)

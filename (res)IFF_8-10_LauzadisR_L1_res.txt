@@ -1,0 +1,24 @@
+          Name|           Exams|       Min Grade
+------------------------------------------------
+      Tarvydas|               3|             100
+         Ignas|               3|             100
+         Ignas|               3|             100
+         Romas|               3|             100
+       Nerijus|               4|              90
+      Veronika|               4|              90
+         Vaiva|               6|              62
+        Justas|               6|              62
+         Vaiva|               6|              62
+        Justas|               6|              62
+        Sandra|               2|              55
+      Karolina|               2|              55
+        Sandra|               2|              55
+      Martynas|               2|              55
+        Mantas|               6|              48
+         Tomas|               6|              48
+      Ovidijus|               6|              48
+       Paulius|               6|              48
+          Inga|               5|              16
+       Kevinas|               5|              16
+          Inga|               5|              16
+       Kevinas|               5|              16

@@ -40,7 +40,9 @@ namespace cs_lygiagretumas
                 thread.Join();
             });
 
-            Console.WriteLine("REZULTATAI: " + resultsMonitor);
+            Console.WriteLine("Results: " + resultsMonitor);
+
+            SaveResults(resultsMonitor);
 
             Console.ReadKey();
         }
@@ -57,7 +59,7 @@ namespace cs_lygiagretumas
                     resultsMonitor.AddElement(student);
                 }
             }
-            Console.WriteLine("GIJA BAIGĖ DARBA");
+            Console.WriteLine("One thread finished");
             return;
         }
 
@@ -88,15 +90,28 @@ namespace cs_lygiagretumas
                     {
                         string[] vertes = line.Split(' ');
                         string name = vertes[0];
-                        int years = int.Parse(vertes[1]);
+                        int exams = int.Parse(vertes[1]);
                         int grade = int.Parse(vertes[2]);
-                        Student newStudent = new Student(name, years, grade);
+                        Student newStudent = new Student(name, exams, grade);
                         students.Add(newStudent);
                     }
                 }
 
             }
             return students;
+        }
+
+        static void SaveResults(ResultsMonitor resultsMonitor)
+        {
+            using (StreamWriter sr = new StreamWriter("(res)IFF_8-10_LauzadisR_L1_res.txt"))
+            {
+                sr.WriteLine("          Name|           Exams|       Min Grade");
+                sr.WriteLine("------------------------------------------------");
+                foreach (Student student in resultsMonitor.GetData())
+                {
+                    sr.WriteLine("{0,14}|{1,16}|{2,16}", student.Name, student.Exams, student.Grade);
+                }
+            }
         }
     }
 
