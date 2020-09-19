@@ -1,0 +1,11 @@
+C:\Users\Romas\cs-lygiagretumas\bin\Debug\netcoreapp2.1\cs-lygiagretumas.deps.json
+C:\Users\Romas\cs-lygiagretumas\bin\Debug\netcoreapp2.1\cs-lygiagretumas.runtimeconfig.json
+C:\Users\Romas\cs-lygiagretumas\bin\Debug\netcoreapp2.1\cs-lygiagretumas.runtimeconfig.dev.json
+C:\Users\Romas\cs-lygiagretumas\bin\Debug\netcoreapp2.1\cs-lygiagretumas.dll
+C:\Users\Romas\cs-lygiagretumas\bin\Debug\netcoreapp2.1\cs-lygiagretumas.pdb
+C:\Users\Romas\cs-lygiagretumas\obj\Debug\netcoreapp2.1\cs-lygiagretumas.csprojAssemblyReference.cache
+C:\Users\Romas\cs-lygiagretumas\obj\Debug\netcoreapp2.1\cs-lygiagretumas.csproj.CoreCompileInputs.cache
+C:\Users\Romas\cs-lygiagretumas\obj\Debug\netcoreapp2.1\cs-lygiagretumas.AssemblyInfoInputs.cache
+C:\Users\Romas\cs-lygiagretumas\obj\Debug\netcoreapp2.1\cs-lygiagretumas.AssemblyInfo.cs
+C:\Users\Romas\cs-lygiagretumas\obj\Debug\netcoreapp2.1\cs-lygiagretumas.dll
+C:\Users\Romas\cs-lygiagretumas\obj\Debug\netcoreapp2.1\cs-lygiagretumas.pdb
